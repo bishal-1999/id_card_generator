@@ -1,0 +1,105 @@
+{% load qr_code %}
+<style>
+    #uni_modal .modal-footer {
+        display: none
+    }
+    
+    #uni_modal .modal-sub-footer {
+        display: flex
+    }
+    
+    .id-card {
+        width: 3in;
+        height: 90vh;
+        border: 2px solid var(--bs-dark);
+        padding: 2rem 1.5rem;
+    }
+    
+    #card-qr,
+    #card-avatar {
+        width: 9rem;
+        height: 9rem;
+    }
+</style>
+<div class="container-fluid" id="id-card">
+    <div class="d-flex mb-3">
+        <div class="px-2">
+            <div class="id-card">
+                <div class="head-text text-center fw-bolder" style="color:black; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: xx-large; margin-top: 20px;">Technology X</div>
+                <div class="d-flex w-100 justify-content-center my-4">
+                    <img src="{% if employee.avatar %}{{employee.avatar.url}}{% endif %}" id="card-avatar" class="img-thumbnail" alt="" style="border-style: solid; border-color:black;border-width: 8px; border-radius: 30px; width: 200px; height: 200px;">
+                </div>
+                <div class="lh-1">
+                    <div class="text-center fw-bold" style=" color:black; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:35px;">{{ employee.name }}</div><br>
+                    <div class="text-center fw-light text-sm" style="color:black; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: xx-large;">{{ employee.department }}</div>
+                    <div class="text-center fw-light text-sm" style="color:black; margin-left: 20px; margin-top: 10px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size:20px; margin-bottom: 5px;">{{ employee.position }}</div>
+                    <div class="text-center fw-light text-sm" style="color:black; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 15px; position: relative;"> Emergency Contact</div>
+                    <div style="display: flex;">
+                        <div class="lh-1 text-center" style="display: flex;">
+                            <img src="{% qr_url_from_text employee.employee_code size=5 version=1 image_format='png' %}" id="card-qr" alt="">
+                            <div>
+                                <div class="text-center fw-light text-sm" style="margin-top: 10px;font-size:x-large; color:black; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin-bottom: 5px; margin-left: 10px;">{{ employee.contact }}</div>
+                                <span class="text-center fw-light text-sm" style=" margin-top: 0px; color:black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 15px;"><span>Blood Group:</span>{{ employee.address }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-2">
+            <div class="id-card">
+                <div class="lh-1">
+                    <dl>
+                        <dt style="font-size: 25px;">Employee Code</dt>
+                        <dd style="font-size: 20px;">{{employee.employee_code}}</dd>
+                        <dt style="font-size: 25px;">Department</dt>
+                        <dd style="font-size: 20px;">{{employee.department}}</dd>
+                        <dt style="font-size: 25px;">Position</dt>
+                        <dd style="font-size: 20px;">{{employee.position}}</dd>
+                        <dt style="font-size: 25px;">Gender</dt>
+                        <dd style="font-size: 20px;">{{employee.gender}}</dd>
+                        <dt style="font-size: 25px;">Date of Birth</dt>
+                        <dd style="font-size: 20px;">{{employee.dob|date:'M d, Y'}}</dd>
+                        <dt style="font-size: 25px;">Contact #</dt>
+                        <dd style="font-size: 20px;">{{employee.contact}}</dd>
+                        <dt style="font-size: 25px;">Email</dt>
+                        <dd style="font-size: 20px;">{{employee.email}}</dd>
+                        <dt style="font-size: 25px;">Blood Group</dt>
+                        <dd style="font-size: 20px;"><small>{{employee.address}}</small></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<noscript id="qr-style">
+<style>
+    * {
+        font-size: 12px;
+    }
+    * small {
+        font-size: 10px;
+    }
+    .id-card {
+        width: 3.5in;
+        height: 6in;
+        border: 2px solid ;
+        padding: 2rem 1.5rem;
+        border-radius: 5px;
+    }
+    #card-avatar {
+        width: 1in;
+        height: 1in;
+    }
+    #card-qr {
+        width: .7in;
+        height: .7in;
+    }
+</style>
+</noscript>
+<script>
+    $(function() {
+
+    })
+</script>
